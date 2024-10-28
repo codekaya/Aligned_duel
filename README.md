@@ -48,76 +48,58 @@ cd aligned-fighters
 
 1.  **Navigate to the frontend directory:**
 
-    bash
-
-    Kodu kopyala
-
-    `cd frontend`
+```bash
+    `cd aligned_fighters_frontend`
+```
 
 2.  **Install dependencies:**
 
-    bash
-
-    Kodu kopyala
-
+```bash
     `npm install`
+```
 
 3.  **Start the React application:**
 
-    bash
-
-    Kodu kopyala
-
+```bash
     `npm start`
+```
 
-    The application should now be running at `http://localhost:3000`.
+The application should now be running at `http://localhost:3000`.
 
 ### Backend Setup
 
 1.  **Navigate to the backend directory:**
 
-    bash
-
-    Kodu kopyala
-
+```bash
     `cd backend`
+```
 
 2.  **Build the Rust backend:**
 
-    bash
-
-    Kodu kopyala
-
+```bash
     `cargo build --release`
+```
 
 3.  **Run the backend server:**
 
-    bash
-
-    Kodu kopyala
-
+```bash
     `cargo run --release`
-
+```
     The server should now be running at `http://localhost:5005`.
 
 ### zk Program Setup
 
 1.  **Navigate to the zk program directory:**
 
-    bash
-
-    Kodu kopyala
-
+```bash
     `cd zk_program`
+```
 
 2.  **Build the zk program:**
 
-    bash
-
-    Kodu kopyala
-
+```bsah
     `cargo build --release --target=riscv32im-unknown-none-elf`
-
+```
     This will generate the ELF file needed for proof generation.
 
 * * * * *
@@ -195,10 +177,7 @@ The project consists of three main components:
 
 Project Structure
 -----------------
-
-bash
-
-Kodu kopyala
+```bash
 
 `aligned-fighters/
 ├── frontend/          # React application
@@ -215,7 +194,7 @@ Kodu kopyala
 │   └── Cargo.toml     # zk program dependencies
 ├── README.md          # Project README
 └── LICENSE            # Project license`
-
+```
 * * * * *
 
 Contributing
@@ -231,37 +210,32 @@ We welcome contributions from the community! Here's how you can help:
 
 1.  **Fork and Clone the Repository**
 
-    bash
+   ```bash
 
-    Kodu kopyala
-
-    `git clone https://github.com/yourusername/aligned-fighters.git`
-
+    `git clone https://github.com/codekaya/aligned-fighters.git`
+```
 2.  **Create a New Branch**
 
-    bash
-
-    Kodu kopyala
+```
 
     `git checkout -b feature/my-new-feature`
+```
 
 3.  **Make Your Changes**
 
 4.  **Commit and Push**
 
-    bash
-
-    Kodu kopyala
+```bash
 
     `git add .
     git commit -m "Add my new feature"
     git push origin feature/my-new-feature`
+```
 
 5.  **Submit a Pull Request**
 
 * * * * *
 
-License
--------
+## License
 
-**Aligned Fighters** is released under the [MIT License](LICENSE).
+[Apache-2.0](LICENSE)
