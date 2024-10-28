@@ -3,7 +3,7 @@ import "./App.css";
 import Navbar from './Navbar';
 import { io } from "socket.io-client";
 
-const socket = io('http://localhost:5005'); // Connect to the backend server
+const socket = io('https://duel-breaker-api.onrender.com'); // Connect to the backend server
 
 
 // Character data with real images and fight stats
