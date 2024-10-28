@@ -2,7 +2,7 @@
 
 Welcome to **Aligned Fighters**, a multiplayer online game where players engage in thrilling turn-based battles with a twist of chance. Each attack has a 50% chance of being valid, making every move unpredictable and exciting. Prove your skills, defeat your opponents, and earn the right to mint a unique NFT as a token of your victory!
 
-![Aligned Fighters](Aligned_fighters/aligned_fight_screen.png)
+![Aligned Fighters](aligned_fight_screen.png)
 
 
 ## Table of Contents
