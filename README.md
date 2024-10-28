@@ -90,7 +90,7 @@ The application should now be running at `http://localhost:3000`.
 1. [Rust](https://www.rust-lang.org/tools/install)
 2. [Foundry](https://getfoundry.sh)
 
-## Usage
+### Usage
 
 ### 1 - Create Keystore
 
@@ -114,6 +114,7 @@ You can do this by using this [faucet](https://cloud.google.com/application/web3
 
 to run the program
 ```bash
+cd zk_program
 make aligned_fight KEYSTORE_PATH=<path_to_keystore.json>
 ```
 
@@ -282,6 +283,7 @@ We welcome contributions from the community! Here's how you can help:
 -   **Report Bugs**: If you find a bug, please open an issue with detailed information.
 -   **Submit Pull Requests**: Fork the repository, make your changes, and submit a pull request.
 -   **Feature Requests**: Have an idea for a new feature? Open an issue to discuss it.
+
 
 ### Development Setup
 
