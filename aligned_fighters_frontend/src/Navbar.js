@@ -65,61 +65,101 @@
 // }
 
 // export default Navbar;
+// src/Navbar.js
 import React, { useState, useEffect } from 'react';
 import './Navbar.css';
-import { Connection, PublicKey } from '@solana/web3.js';
 
 function Navbar({ setWalletAddress }) {
-   const [walletAddress, setLocalWalletAddress] = useState(null);
+  const [walletAddress, setLocalWalletAddress] = useState(null);
 
-  // Check if Phantom is installed
-  const isPhantomInstalled = () => {
-    return window.solana && window.solana.isPhantom;
+  // Check if MetaMask is installed
+  const isMetaMaskInstalled = () => {
+    return typeof window.ethereum !== 'undefined' && window.ethereum.isMetaMask;
   };
 
-  // Connect to Phantom wallet
+  // Connect to MetaMask wallet
   const connectWallet = async () => {
-    if (isPhantomInstalled()) {
+    if (isMetaMaskInstalled()) {
       try {
-        const { solana } = window;
-        if (solana.isConnected) {
-          console.log("Already connected to wallet: ", solana.publicKey.toString());
-          return;
-        }
-        const response = await solana.connect();
-        setWalletAddress(response.publicKey.toString());
-        setLocalWalletAddress(response.publicKey.toString());
-        console.log("Connected to wallet: ", response.publicKey.toString());
+        const { ethereum } = window;
+
+        // Request account access if needed
+        const accounts = await ethereum.request({ method: 'eth_requestAccounts' });
+        const account = accounts[0];
+        setWalletAddress(account);
+        setLocalWalletAddress(account);
+        console.log('Connected to wallet:', account);
+
+        // Switch to Holesky testnet
+        await switchToHoleskyNetwork();
       } catch (err) {
-        console.error("Wallet connection failed: ", err);
+        console.error('Wallet connection failed:', err);
       }
     } else {
-      alert("Phantom wallet is not installed!");
+      alert('MetaMask is not installed!');
+    }
+  };
+
+  // Switch to Holesky testnet
+  const switchToHoleskyNetwork = async () => {
+    const { ethereum } = window;
+    const holeskyChainId = '0x4268'; // Hexadecimal chain ID of 17000
+    try {
+      // Try to switch to Holesky
+      await ethereum.request({
+        method: 'wallet_switchEthereumChain',
+        params: [{ chainId: holeskyChainId }],
+      });
+      console.log('Switched to Holesky testnet');
+    } catch (switchError) {
+      // This error code indicates that the chain has not been added to MetaMask
+      if (switchError.code === 4902) {
+        try {
+          // Add Holesky network to MetaMask
+          await ethereum.request({
+            method: 'wallet_addEthereumChain',
+            params: [
+              {
+                chainId: holeskyChainId,
+                chainName: 'Holesky Testnet',
+                rpcUrls: ['https://holesky.blockchain-node-provider.com'], // Replace with an actual RPC URL
+                nativeCurrency: {
+                  name: 'Test ETH',
+                  symbol: 'ETH',
+                  decimals: 18,
+                },
+                blockExplorerUrls: ['https://holesky.etherscan.io'], // Replace with actual explorer URL if available
+              },
+            ],
+          });
+          console.log('Added and switched to Holesky testnet');
+        } catch (addError) {
+          console.error('Failed to add Holesky testnet:', addError);
+        }
+      } else {
+        console.error('Failed to switch to Holesky testnet:', switchError);
+      }
     }
   };
 
   // Check if the wallet is already connected on page load/reload
   useEffect(() => {
     const checkWalletConnection = async () => {
-      if (isPhantomInstalled()) {
-        const { solana } = window;
+      if (isMetaMaskInstalled()) {
+        const { ethereum } = window;
+        try {
+          const accounts = await ethereum.request({ method: 'eth_accounts' });
+          if (accounts.length > 0) {
+            const account = accounts[0];
+            setWalletAddress(account);
+            setLocalWalletAddress(account);
+            console.log('Wallet already connected:', account);
 
-        if (solana.isConnected) {
-          // If the wallet is already connected, set the address
-          const wallet = solana.publicKey.toString();
-          setWalletAddress(wallet);
-          setLocalWalletAddress(wallet);
-          console.log("Wallet already connected: ", wallet);
-        } else {
-          // Check for auto-connect support in Phantom wallet
-          try {
-            const response = await solana.connect({ onlyIfTrusted: true });
-            setWalletAddress(response.publicKey.toString());
-            setLocalWalletAddress(response.publicKey.toString());
-            console.log("Auto-connected to wallet: ", response.publicKey.toString());
-          } catch (err) {
-            console.log("Auto-connect failed: ", err);
+            // Optionally switch to Holesky network if not already
+            await switchToHoleskyNetwork();
           }
+        } catch (err) {
+          console.error('Error checking wallet connection:', err);
         }
       }
     };
@@ -127,20 +167,25 @@ function Navbar({ setWalletAddress }) {
     checkWalletConnection();
 
     // Listen for wallet connection events
-    if (isPhantomInstalled()) {
-      const { solana } = window;
+    if (isMetaMaskInstalled()) {
+      const { ethereum } = window;
 
-      solana.on("connect", () => {
-        const wallet = solana.publicKey.toString();
-        setWalletAddress(wallet);  // Update the wallet address in App.js
-        setLocalWalletAddress(wallet); // Update the local wallet address in Navbar
-        console.log("Wallet connected: ", wallet);
+      ethereum.on('accountsChanged', (accounts) => {
+        if (accounts.length > 0) {
+          const account = accounts[0];
+          setWalletAddress(account);
+          setLocalWalletAddress(account);
+          console.log('Wallet connected:', account);
+        } else {
+          setWalletAddress(null);
+          setLocalWalletAddress(null);
+          console.log('Wallet disconnected');
+        }
       });
 
-      solana.on("disconnect", () => {
-        setWalletAddress(null); // Reset wallet address on disconnect
-        setLocalWalletAddress(null);
-        console.log("Wallet disconnected");
+      ethereum.on('chainChanged', (chainId) => {
+        console.log('Chain changed to:', chainId);
+        // You can add logic here to handle chain changes
       });
     }
   }, [setWalletAddress]);
@@ -151,13 +196,14 @@ function Navbar({ setWalletAddress }) {
       <ul className="navbar-links">
         <li><a href="#home">Home</a></li>
         <li><a href="#about">About</a></li>
-        <li><a href="#services">Services</a></li>
-        <li><a href="#contact">Contact</a></li>
+        {/* Add other navigation links as needed */}
       </ul>
 
       <div className="wallet-button-container">
         {walletAddress ? (
-          <p>Connected: {walletAddress.slice(0, 4)}...{walletAddress.slice(-4)}</p>
+          <p>
+            Connected: {walletAddress.slice(0, 6)}...{walletAddress.slice(-4)}
+          </p>
         ) : (
           <button className="wallet-button" onClick={connectWallet}>
             Connect Wallet

@@ -1,6 +1,8 @@
 # Aligned Fighters
 
-Welcome to **Aligned Fighters**, a multiplayer online game where players engage in thrilling turn-based battles with a twist of chance. Each attack has a 50% chance of being valid, making every move unpredictable and exciting. Prove your skills, defeat your opponents, and earn the right to mint a unique NFT as a token of your victory!
+Welcome to **Aligned Fighters**, a thrilling multiplayer online game where you stake real value to duel other players in a high-stakes battle of strategy and chance. Engage in intense turn-based combat, leverage the unpredictability of attacks, and outsmart your opponent to claim victory. Winners earn the staked amount and mint a unique NFT as a token of their triumph, all secured through zero-knowledge proofs on the Ethereum Holesky testnet via the Aligned Layer protocol.
+
+
 
 ![Aligned Fighters](aligned_fight_screen.png)
 
@@ -20,15 +22,18 @@ Welcome to **Aligned Fighters**, a multiplayer online game where players engage 
 
 ## Description
 
-**Aligned Fighters** is a blockchain-integrated game built with React on the frontend and Rust on the backend. It leverages zero-knowledge proofs (zk-SNARKs) to ensure fair play and allows winners to mint a unique NFT upon victory.
+**Aligned Fighters** Aligned Fighters is a blockchain-integrated multiplayer game built with React on the frontend and Rust on the backend. Players stake real value to engage in strategic turn-based duels. Each action is recorded and verified using zero-knowledge proofs (zk-SNARKs) to ensure fairness and integrity. Winners claim the staked amount and mint a unique NFT, with all transactions processed on the Ethereum Holesky testnet via the Aligned Layer protocol.
+
 
 ### Features
 
-- **Multiplayer Turn-Based Battles**: Engage in strategic fights against other players.
-- **Chance-Based Attacks**: Each attack has a 50% chance of being valid, adding excitement to every move.
-- **Unique Characters**: Choose from a roster of characters, each with unique stats and abilities.
-- **Blockchain Integration**: Interact with Ethereum blockchain networks for NFT minting.
-- **Zero-Knowledge Proofs**: Ensure fair play by verifying game outcomes without revealing private data.
+
+- **Stake-Based Duels**: Players can stake various amounts or play for free.
+- **Turn-Based Combat**: Engage in strategic battles with attack and hide options.
+- **Chance-Based Outcomes**: Attacks have a 60% chance of success, hides have strategic benefits.
+- **Zero-Knowledge Proofs**: Game integrity verified using zk-SNARKs with the SP1 prover.
+- **Blockchain Integration**: Transactions and NFT minting on the Ethereum Holesky testnet via Aligned Layer.
+- **Unique NFTs for Winners**: Victorious players mint exclusive NFTs as trophies.
 
 ---
 
@@ -40,6 +45,7 @@ Welcome to **Aligned Fighters**, a multiplayer online game where players engage 
 - **Rust and Cargo**: For building and running the backend server and zk program.
 - **Ethereum Wallet**: Required for blockchain interactions (e.g., MetaMask).
 - **Aligned SDK**: Ensure you have the Aligned SDK installed for zk-SNARK functionalities.
+- **SP1 Prover**: Required for proof generation.
 
 ### Clone the Repository
 
@@ -110,20 +116,35 @@ The application should now be running at `http://localhost:3000`.
 Game Mechanics
 --------------
 
--   **Character Selection**: Players select a character, each with unique health and fight score attributes.
--   **Battle Mechanics**:
-    -   **Turn-Based Fights**: Players take turns to attack or defend.
-    -   **Attack Probability**: Each attack has a 50% chance to be successful.
-    -   **Health Reduction**: Successful attacks reduce the opponent's health based on attack power.
+### Character Selection and Staking
+
+-   **Stake Selection**: Players choose an amount to stake or opt for a free game.
+-   **Character Choice**: Select from a roster of unique characters, each with distinct attributes.
+
+### Battle Mechanics
+
+-   **Turn-Based Actions**: Players take turns to perform actions.
+-   **Available Actions**:
+    -   **Attack**:
+        -   **Success Rate**: 60% chance of a valid attack.
+        -   **Effect**: Successful attacks reduce the opponent's health based on attack power.
+    -   **Hide**:
+        -   **Effect**: If chosen, there is a 40% chance that the next attack from the opponent will be reversed back to them.
 -   **Winning the Game**:
-    -   The player who reduces the opponent's health to zero wins.
-    -   Winners can mint a unique NFT as a token of their victory.
--   **NFT Minting**:
-    -   Upon winning, the backend generates a zk-SNARK proof verifying the game's validity.
-    -   The proof is submitted to the blockchain to mint an NFT.
+    -   **Victory Condition**: Reduce your opponent's health to zero while surviving.
+    -   **Rewards**:
+        -   **Staked Amount**: Winner takes the combined staked amount.
+        -   **NFT Minting**: Winners can mint a unique NFT as a trophy.
+
+### Game Integrity and Proof Verification
+
+-   **Action Recording**: All player actions are stored on the Rust backend.
+-   **Zero-Knowledge Proofs**:
+    -   **Proof Generation**: After the game, the backend uses the SP1 prover to generate a zk-SNARK proof, verifying the game was played according to the rules.
+    -   **Aligned Layer Verification**: The proof is sent to the Aligned Layer for verification.
+    -   **Blockchain Interaction**: Upon successful verification, the proof is submitted to the Ethereum Holesky testnet.
 
 * * * * *
-
 Quick Start
 -----------
 
@@ -132,17 +153,28 @@ Quick Start
     -   Start both the frontend and backend servers as per the setup guide.
 2.  **Access the Game**:
 
-    -   Open your browser and navigate to `http://localhost:3000`.
+    -   Open your browser and navigate to <http://localhost:3000>.
 3.  **Connect Your Wallet**:
 
-    -   Click on the "Connect Wallet" button to link your Ethereum wallet.
-4.  **Select a Character and Fight**:
+    -   Click on the "Connect Wallet" button to link your MetaMask wallet.
+    -   Ensure your MetaMask is configured to the Ethereum Holesky testnet.
+4.  **Select a Stake Amount and Character**:
 
-    -   Choose your character and enter the battle arena.
-    -   Engage in turn-based combat against another player.
-5.  **Mint Your NFT**:
+    -   Choose an amount to stake or opt for a free game.
+    -   Select your character and enter the battle arena.
+5.  **Wait for an Opponent**:
 
-    -   If you win, follow the prompts to mint your unique NFT.
+    -   The game will start once another player joins.
+6.  **Engage in Battle**:
+
+    -   Use the **Attack** and **Hide** buttons strategically.
+    -   Remember the attack and hide probabilities:
+        -   **Attack**: 60% chance of success.
+        -   **Hide**: 40% chance to reflect the next attack back to the opponent.
+7.  **Win and Claim Rewards**:
+
+    -   If you win, the backend will generate a zk-SNARK proof.
+    -   Upon verification, you will receive the staked amount and can mint a unique NFT.
 
 * * * * *
 
@@ -155,27 +187,39 @@ The project consists of three main components:
 
 1.  **Frontend (React)**:
 
-    -   User interface for game interaction.
-    -   WebSocket connection to the backend for real-time updates.
-    -   Wallet integration for blockchain interactions.
+    -   **User Interface**: Interactive UI for game interaction and wallet connectivity.
+    -   **WebSocket Communication**: Real-time updates via WebSocket connection to the backend.
+    -   **MetaMask Integration**: Connect to MetaMask for Ethereum interactions on the Holesky testnet.
 2.  **Backend (Rust with Actix-Web)**:
 
-    -   WebSocket server handling game logic and state.
-    -   Manages player connections and actions.
-    -   Generates zk-SNARK proofs upon game completion.
+    -   **Game Server**: Handles game logic, player actions, and maintains game state.
+    -   **WebSocket Server**: Facilitates real-time communication with the frontend.
+    -   **Proof Generation**: Uses the SP1 prover to generate zk-SNARK proofs after each game.
 3.  **zk Program (Rust, no_std)**:
 
-    -   Validates the integrity of the game.
-    -   Ensures that the game was played fairly.
-    -   Used by the backend to generate proofs.
+    -   **Game Verification**: Validates the integrity of the game using the recorded actions.
+    -   **Zero-Knowledge Proofs**: Ensures that the game was played fairly without revealing private data.
+    -   **Aligned Layer Integration**: Interacts with the Aligned Layer for proof verification.
 
 ### Data Flow
 
--   Players connect to the backend via WebSockets.
--   Game state is synchronized in real-time between the frontend and backend.
--   After the game ends, the backend generates a zk-SNARK proof of the game's validity.
--   The proof is submitted to the blockchain to mint an NFT.
+1.  **Player Actions**:
 
+    -   Players send actions (attack or hide) to the backend via WebSockets.
+    -   The backend updates the game state and broadcasts it to both players.
+2.  **Game State Management**:
+
+    -   The backend maintains the state of the game, including player health and actions.
+    -   All actions are recorded for proof generation.
+3.  **Proof Generation and Verification**:
+
+    -   Upon game completion, the backend uses the SP1 prover to generate a zk-SNARK proof of the game's validity.
+    -   The proof is sent to the Aligned Layer for verification.
+    -   If verified, the proof is submitted to the Ethereum Holesky testnet.
+4.  **Reward Distribution**:
+
+    -   The winner receives the staked amount.
+    -   An NFT is minted on the Holesky testnet as a trophy for the winner.
 * * * * *
 
 Project Structure
