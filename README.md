@@ -49,19 +49,19 @@ cd aligned-fighters
 1.  **Navigate to the frontend directory:**
 
 ```bash
-    `cd aligned_fighters_frontend`
+    cd aligned_fighters_frontend
 ```
 
 2.  **Install dependencies:**
 
 ```bash
-    `npm install`
+    npm install
 ```
 
 3.  **Start the React application:**
 
 ```bash
-    `npm start`
+    npm start
 ```
 
 The application should now be running at `http://localhost:3000`.
@@ -71,19 +71,19 @@ The application should now be running at `http://localhost:3000`.
 1.  **Navigate to the backend directory:**
 
 ```bash
-    `cd backend`
+    cd backend
 ```
 
 2.  **Build the Rust backend:**
 
 ```bash
-    `cargo build --release`
+    cargo build --release
 ```
 
 3.  **Run the backend server:**
 
 ```bash
-    `cargo run --release`
+    cargo run --release
 ```
     The server should now be running at `http://localhost:5005`.
 
@@ -92,13 +92,13 @@ The application should now be running at `http://localhost:3000`.
 1.  **Navigate to the zk program directory:**
 
 ```bash
-    `cd zk_program`
+    cd zk_program
 ```
 
 2.  **Build the zk program:**
 
-```bsah
-    `cargo build --release --target=riscv32im-unknown-none-elf`
+```bash
+    cargo build --release --target=riscv32im-unknown-none-elf
 ```
     This will generate the ELF file needed for proof generation.
 
@@ -179,7 +179,7 @@ Project Structure
 -----------------
 ```bash
 
-`aligned-fighters/
+aligned-fighters/
 ├── frontend/          # React application
 │   ├── src/
 │   │   └── App.js     # Main React component
@@ -193,7 +193,7 @@ Project Structure
 │   │   └── lib.rs     # zk program code
 │   └── Cargo.toml     # zk program dependencies
 ├── README.md          # Project README
-└── LICENSE            # Project license`
+└── LICENSE            # Project license
 ```
 * * * * *
 
@@ -212,13 +212,13 @@ We welcome contributions from the community! Here's how you can help:
 
    ```bash
 
-    `git clone https://github.com/codekaya/aligned-fighters.git`
+    git clone https://github.com/codekaya/aligned-fighters.git
 ```
 2.  **Create a New Branch**
 
 ```
 
-    `git checkout -b feature/my-new-feature`
+    git checkout -b feature/my-new-feature
 ```
 
 3.  **Make Your Changes**
@@ -227,9 +227,9 @@ We welcome contributions from the community! Here's how you can help:
 
 ```bash
 
-    `git add .
+    git add .
     git commit -m "Add my new feature"
-    git push origin feature/my-new-feature`
+    git push origin feature/my-new-feature
 ```
 
 5.  **Submit a Pull Request**
