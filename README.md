@@ -51,8 +51,8 @@ Welcome to **Aligned Fighters**, a thrilling multiplayer online game where you s
 ### Clone the Repository
 
 ```bash
-git clone https://github.com/yourusername/aligned-fighters.git
-cd aligned-fighters
+git clone https://github.com/codekaya/Aligned_duel
+cd aligned_duel
 ```
 ### Frontend Setup
 
@@ -76,26 +76,6 @@ cd aligned-fighters
 
 The application should now be running at `http://localhost:3000`.
 
-### Backend Setup
-
-1.  **Navigate to the backend directory:**
-
-```bash
-    cd backend
-```
-
-2.  **Build the Rust backend:**
-
-```bash
-    cargo build --release
-```
-
-3.  **Run the backend server:**
-
-```bash
-    cargo run --release
-```
-    The server should now be running at `http://localhost:5005`.
 
 ### zk Program Setup
 
