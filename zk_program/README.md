@@ -38,10 +38,9 @@ You can do this by using this [faucet](https://cloud.google.com/application/web3
 
 ### 2 -  Fight
 
-To answer quiz questions run:
-
+to run the program
 ```bash
-make answer_quiz KEYSTORE_PATH=<path_to_keystore.json>
+make aligned_fight KEYSTORE_PATH=<path_to_keystore.json>
 ```
 
 This will:
@@ -50,5 +49,5 @@ This will:
 2. Generate ZK proof
 3. Pay & submit proof to aligned for verification
 4. Wait for proof to be verified in aligned
-5. Claim NFT if proof is verified
+5. Claim NFT and staked amount if proof is verified
 

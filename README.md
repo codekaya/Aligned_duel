@@ -38,6 +38,11 @@ Welcome to **Aligned Fighters**, a thrilling multiplayer online game where you s
 
 ---
 
+## Quick Start
+
+You can directly play at [Aligned Fighters](https://aligned-duel.vercel.app/)
+
+
 ## Installation and Setup Guide
 
 ### Prerequisites
@@ -47,6 +52,7 @@ Welcome to **Aligned Fighters**, a thrilling multiplayer online game where you s
 - **Ethereum Wallet**: Required for blockchain interactions (e.g., MetaMask).
 - **Aligned SDK**: Ensure you have the Aligned SDK installed for zk-SNARK functionalities.
 - **SP1 Prover**: Required for proof generation.
+- **Foundry**: For verifier contract deployment
 
 ### Clone the Repository
 
@@ -79,17 +85,45 @@ The application should now be running at `http://localhost:3000`.
 
 ### zk Program Setup
 
-1.  **Navigate to the zk program directory:**
+### Requirements
+
+1. [Rust](https://www.rust-lang.org/tools/install)
+2. [Foundry](https://getfoundry.sh)
+
+## Usage
+
+### 1 - Create Keystore
+
+You can use cast to create a local keystore.
+If you already have one you can skip this step.
 
 ```bash
-    cd zk_program
+cast wallet new-mnemonic
 ```
 
-2.  **Build the zk program:**
+Then you can import your created keystore using:
 
 ```bash
-    cargo build --release --target=riscv32im-unknown-none-elf
+cast wallet import --interactive <path_to_keystore.json>
 ```
+
+Then you need to obtain some funds to pay for gas and proof verification.
+You can do this by using this [faucet](https://cloud.google.com/application/web3/faucet/ethereum/holesky)
+
+### 2 -  Fight
+
+to run the program
+```bash
+make aligned_fight KEYSTORE_PATH=<path_to_keystore.json>
+```
+
+This will:
+
+1. Fight with each other
+2. Generate ZK proof
+3. Pay & submit proof to aligned for verification
+4. Wait for proof to be verified in aligned
+5. Claim NFT and staked amount if proof is verified
     This will generate the ELF file needed for proof generation.
 
 * * * * *
