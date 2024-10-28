@@ -2,6 +2,7 @@
 
 Welcome to **Aligned Fighters**, a thrilling multiplayer online game where you stake real value to duel other players in a high-stakes battle of strategy and chance. Engage in intense turn-based combat, leverage the unpredictability of attacks, and outsmart your opponent to claim victory. Winners earn the staked amount and mint a unique NFT as a token of their triumph, all secured through zero-knowledge proofs on the Ethereum Holesky testnet via the Aligned Layer protocol.
 
+ It's LIVE at : [Aligned Fighters/](https://aligned-duel.vercel.app/)
 
 
 ![Aligned Fighters](aligned_fight_screen.png)
@@ -22,7 +23,7 @@ Welcome to **Aligned Fighters**, a thrilling multiplayer online game where you s
 
 ## Description
 
-**Aligned Fighters** Aligned Fighters is a blockchain-integrated multiplayer game built with React on the frontend and Rust on the backend. Players stake real value to engage in strategic turn-based duels. Each action is recorded and verified using zero-knowledge proofs (zk-SNARKs) to ensure fairness and integrity. Winners claim the staked amount and mint a unique NFT, with all transactions processed on the Ethereum Holesky testnet via the Aligned Layer protocol.
+**Aligned Fighters** is a blockchain-integrated multiplayer game built with React on the frontend and Rust on the backend. Players stake real value to engage in strategic turn-based duels. Each action is recorded and verified using zero-knowledge proofs (zk-SNARKs) to ensure fairness and integrity. Winners claim the staked amount and mint a unique NFT, with all transactions processed on the Ethereum Holesky testnet via the Aligned Layer protocol.
 
 
 ### Features
@@ -112,6 +113,23 @@ The application should now be running at `http://localhost:3000`.
     This will generate the ELF file needed for proof generation.
 
 * * * * *
+
+### Character selection
+
+![Character selection](character_selection.png)
+
+### Waiting for Opponent
+
+![Waiting](waiting_screen.png)
+
+### Main Screen
+
+![main screen](main_screen.png)
+
+### Pre-Game Screen
+
+![pregame screen](pregame_screen.png)
+
 
 Game Mechanics
 --------------
