@@ -2,7 +2,7 @@
 
 Welcome to **Aligned Fighters**, a thrilling multiplayer online game where you stake real value to duel other players in a high-stakes battle of strategy and chance. Engage in intense turn-based combat, leverage the unpredictability of attacks, and outsmart your opponent to claim victory. Winners earn the staked amount and mint a unique NFT as a token of their triumph, all secured through zero-knowledge proofs on the Ethereum Holesky testnet via the Aligned Layer protocol.
 
- It's LIVE at : [Aligned Fighters/](https://aligned-duel.vercel.app/)
+ It's LIVE at : [Aligned Fighters](https://aligned-duel.vercel.app/)
 
 
 ![Aligned Fighters](aligned_fight_screen.png)
@@ -94,6 +94,11 @@ The application should now be running at `http://localhost:3000`.
 
 * * * * *
 
+
+### Main Screen
+
+![main screen](main_screen.png)
+
 ### Character selection
 
 ![Character selection](character_selection.png)
@@ -101,10 +106,6 @@ The application should now be running at `http://localhost:3000`.
 ### Waiting for Opponent
 
 ![Waiting](waiting_screen.png)
-
-### Main Screen
-
-![main screen](main_screen.png)
 
 ### Pre-Game Screen
 
@@ -225,17 +226,14 @@ Project Structure
 ```bash
 
 aligned-fighters/
-├── frontend/          # React application
+├── aligned_fighters_frontend/    # React application
 │   ├── src/
 │   │   └── App.js     # Main React component
 │   └── package.json   # Frontend dependencies
-├── backend/           # Rust backend server
+|
+├── zk_program/script        # zk-SNARK program
 │   ├── src/
-│   │   └── main.rs    # Main backend code
-│   └── Cargo.toml     # Backend dependencies
-├── zk_program/        # zk-SNARK program
-│   ├── src/
-│   │   └── lib.rs     # zk program code
+│   │   └── main.rs    # zk program code
 │   └── Cargo.toml     # zk program dependencies
 ├── README.md          # Project README
 └── LICENSE            # Project license
@@ -257,7 +255,7 @@ We welcome contributions from the community! Here's how you can help:
 
    ```bash
 
-    git clone https://github.com/codekaya/aligned-fighters.git
+    git clone https://github.com/codekaya/Aligned_duel
 ```
 2.  **Create a New Branch**
 
