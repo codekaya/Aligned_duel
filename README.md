@@ -65,19 +65,19 @@ cd aligned_duel
 1.  **Navigate to the frontend directory:**
 
 ```bash
-    cd aligned_fighters_frontend
+cd aligned_fighters_frontend
 ```
 
 2.  **Install dependencies:**
 
 ```bash
-    npm install
+npm install
 ```
 
 3.  **Start the React application:**
 
 ```bash
-    npm start
+npm start
 ```
 
 The application should now be running at `http://localhost:3000`.
@@ -290,14 +290,12 @@ We welcome contributions from the community! Here's how you can help:
 1.  **Fork and Clone the Repository**
 
    ```bash
-
-    git clone https://github.com/codekaya/Aligned_duel
+ git clone https://github.com/codekaya/Aligned_duel
 ```
 2.  **Create a New Branch**
 
 ```
-
-    git checkout -b feature/my-new-feature
+git checkout -b feature/my-new-feature
 ```
 
 3.  **Make Your Changes**
@@ -305,10 +303,9 @@ We welcome contributions from the community! Here's how you can help:
 4.  **Commit and Push**
 
 ```bash
-
-    git add .
-    git commit -m "Add my new feature"
-    git push origin feature/my-new-feature
+ git add .
+ git commit -m "Add my new feature"
+git push origin feature/my-new-feature
 ```
 
 5.  **Submit a Pull Request**
